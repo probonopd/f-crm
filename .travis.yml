@@ -14,7 +14,10 @@ install:
 script:
   - qmake CONFIG+=release PREFIX=/usr
   - make -j$(nproc)
-  - make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
+  - mkdir -p appdir/usr/bin ; cp f-crm appdir/usr/bin/
+  - mkdir -p appdir/usr/share/applications/ ; cp res/f-crm.desktop appdir/usr/share/applications/
+  - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps ; cp res/icons/f-crm.svg appdir/usr/share/icons/hicolor/scalable/apps/
+  - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
